@@ -1,0 +1,59 @@
+import bicis.*
+import accesorios.*
+import deposito.*
+
+
+test "deposito" {
+	
+const deposito1 = new Deposito()
+const bici1 = new Bicicletas()
+
+	bici1.rodado(28)
+	bici1.largo(150)
+	bici1.marca("Olmo")
+	bici1.agregar(farolito)
+
+const bici2 = new Bicicletas()
+	bici2.rodado(26)
+	bici2.largo(110)
+	bici2.marca("Legnano")
+	bici2.agregar(farolito)
+	canasto.volumen(8)
+	bici2.agregar(canasto)
+	morralDeBici.largo(21)
+	bici2.agregar(morralDeBici)
+
+const bici3 = new Bicicletas()
+	bici3.rodado(20)
+	bici3.largo(90)
+	bici3.marca("Legnano")
+	morralDeBici.largo(6)
+	morralDeBici.tieneOjoDeGato()
+	bici3.agregar(morralDeBici)
+	
+const bici4 = new Bicicletas()
+	bici4.rodado(20)
+	bici4.largo(145)
+	bici4.marca("Olmo")
+	morralDeBici.largo(6)
+	morralDeBici.tieneOjoDeGato()
+	bici4.agregar(morralDeBici)
+	
+deposito1.agregarBici(bici1)
+deposito1.agregarBici(bici2)
+deposito1.agregarBici(bici3)
+	
+assert.equals([bici1, bici2], deposito1.bicisRapidas())
+assert.equals(#{"Olmo", "Legnano"}, deposito1.marcasDeBicis())
+//assert.equals(false, deposito1.depositoNocturno())
+assert.equals(true, deposito1.puedeLlevar(10))
+assert.equals(false, deposito1.puedeLlevar(50))
+assert.equals("Olmo", deposito1.marcaMasRapida())
+assert.equals(0, deposito1.cargaBicisLargas())
+assert.equals(0, deposito1.bicisSinAccesorios())
+
+deposito1.agregarBici(bici4)
+
+assert.equals([bici1, bici4], deposito1.bicisCompanieras(bici1))
+assert.equals([bici2], deposito1.bicisCompanieras(bici2))
+}
